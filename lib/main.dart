@@ -13,6 +13,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'AudioBook',
       home: HomePage(),
+      theme: ThemeData(
+        primaryColor: Colors.blueAccent,
+      )
     );
   }
 }
