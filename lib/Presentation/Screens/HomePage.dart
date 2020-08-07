@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 
@@ -13,6 +11,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Colors.grey,
+            ),
+            onPressed: () {},
+          )
+        ],
         centerTitle: true,
         title: Text(
           'AudioBook',
