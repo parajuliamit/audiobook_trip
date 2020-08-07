@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:audiobook_trip/Presentation/constants.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,7 +13,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AudioBook'),
+        centerTitle: true,
+        title: Text(
+          'AudioBook',
+          style: kTitle,
+        ),
         elevation: 0,
         backgroundColor: Colors.white,
       ),
