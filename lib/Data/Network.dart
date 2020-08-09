@@ -11,7 +11,10 @@ class Network {
     String url = _baseUrl + 'authors?' + _format;
     List<Author> popularAuthors = [];
     http.Response response;
-    response = await http.get(url);
+    response = await http.get(url).timeout(Duration(seconds: 3), onTimeout: () {
+      print('TimeOut');
+      return http.get(url);
+    });
     if (response.statusCode == 200) {
       dynamic rawData = jsonDecode(response.body);
       for (int i = 0; i < 10; i++) {
@@ -23,7 +26,7 @@ class Network {
             dob: data['dob'],
             dod: data['dod']);
         popularAuthors.add(author);
-        print('Name: ' + author.firstName + author.lastName);
+//        print('Name: ' + author.firstName + author.lastName);
       }
     }
     return popularAuthors;
@@ -242,7 +245,7 @@ class Network {
     if (response.statusCode == 200) {
       dynamic rawData = jsonDecode(response.body);
       for (var data in rawData['books']) {
-        if(data['language']!=language){
+        if (data['language'] != language) {
           continue;
         }
         var authorData = data['authors'][0];
