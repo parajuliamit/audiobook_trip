@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/Screens/HomePage.dart';
+import 'package:audiobook_trip/Data/Network.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Network.getPopularBooks();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AudioBook',
