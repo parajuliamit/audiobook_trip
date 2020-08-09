@@ -26,7 +26,6 @@ class Network {
             dob: data['dob'],
             dod: data['dod']);
         popularAuthors.add(author);
-//        print('Name: ' + author.firstName + author.lastName);
       }
     }
     return popularAuthors;
@@ -126,7 +125,6 @@ class Network {
             copyrightYear: data['copyright_year']);
 
         authorBooks.add(book);
-        print(book.author.firstName + book.id);
       }
     }
 
@@ -231,7 +229,6 @@ class Network {
             dob: data['dob'],
             dod: data['dod']);
         searchAuthors.add(author);
-        print('Name: ' + author.firstName + author.lastName);
       }
     }
     return searchAuthors;
