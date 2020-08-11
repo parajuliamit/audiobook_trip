@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'bookcard.dart';
 
-//String imageLocation = "assets/images/download.jpg";
-
 List<String> genre = [
   'Poetry',
   'Children\'s Fiction',
@@ -14,24 +12,6 @@ List<String> genre = [
   'Plays',
   'Romance'
 ];
-//
-//List<GenreList> genreList = [
-//  GenreList(
-//    name: "Poetry",
-//    picture: "assets/images/download.jpg",
-//    author: "Authorname1",
-//  ),
-//  GenreList(
-//    name: "Children's Fiction",
-//    picture: "assets/images/download.jpg",
-//    author: "Authorname2",
-//  ),
-//  GenreList(
-//    name: "Children's Non-fiction",
-//    picture: "assets/images/download.jpg",
-//    author: "Authorname3",
-//  ),
-//];
 
 class Genre extends StatefulWidget {
   @override
@@ -48,9 +28,10 @@ class _GenreState extends State<Genre> {
         return Padding(
           padding: const EdgeInsets.fromLTRB(12, 14, 16, 12),
           child: InkWell(
-            onTap:
-                ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new GenreBookScreen())),
-
+            onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => GenreBookScreen(
+                      genre: genre[index],
+                    ))),
             child: BookCard(
               //imageLocation: imageLocation,
               title: "${genre[index]}",

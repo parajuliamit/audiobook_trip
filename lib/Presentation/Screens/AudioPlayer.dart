@@ -68,7 +68,6 @@ class _AudioPlayerState extends State<AudioPlayer> {
                     });
                     await assetsAudioPlayer.open(Audio.network(widget.link),
                         showNotification: true, autoStart: true);
-                    print('Played');
                     isFirst = false;
                   } catch (t) {
                     print(t);

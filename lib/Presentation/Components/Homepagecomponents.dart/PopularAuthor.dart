@@ -19,7 +19,7 @@ class PopularAuthor extends StatefulWidget {
 }
 
 class _PopularAuthorState extends State<PopularAuthor> {
- // String imageLocation = 'assets/images/download.jpg';
+  // String imageLocation = 'assets/images/download.jpg';
 
   List<Author> popularAuthor = [];
 
@@ -47,14 +47,15 @@ class _PopularAuthorState extends State<PopularAuthor> {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(12, 14, 16, 12),
                 child: InkWell(
-                  onTap:
-                      ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new AuthorBookScreen())),
-
+                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(
+                      builder: (context) => new AuthorBookScreen(
+                            author: popularAuthor[index],
+                          ))),
                   child: BookCard(
                     //imageLocation: "$imageLocation",
-                    title: '${popularAuthor[index].firstName} ${popularAuthor[index].lastName}',
-                    name:
-                        '',
+                    title:
+                        '${popularAuthor[index].firstName} ${popularAuthor[index].lastName}',
+                    name: '',
                   ),
                 ),
               );

@@ -1,31 +1,49 @@
+import 'package:audiobook_trip/Data/Network.dart';
+import 'package:audiobook_trip/Domain/Author.dart';
+import 'package:audiobook_trip/Domain/Book.dart';
 import 'package:audiobook_trip/Presentation/Screens/ListScreen.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-
-
-
-
-List<AuthorBookList> authorBookList =[
-AuthorBookList(name: "Bookname1", picture: "assets", author: "Authorname", year: "1999"),
-AuthorBookList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
-AuthorBookList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
-
-];
-
+//
+//List<AuthorBookList> authorBookList =[
+//AuthorBookList(name: "Bookname1", picture: "assets", author: "Authorname", year: "1999"),
+//AuthorBookList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
+//AuthorBookList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
+//
+//];
+//
 
 class AuthorBookScreen extends StatefulWidget {
+  final Author author;
+
+  AuthorBookScreen({this.author});
+
   @override
   _AuthorBookScreenState createState() => _AuthorBookScreenState();
 }
 
 class _AuthorBookScreenState extends State<AuthorBookScreen> {
+  List<Book> authorBooks = [];
+
+  void getAuthorBooks() async {
+    List<Book> book = await Network.getAuthorBooks(author: widget.author);
+    setState(() {
+      authorBooks = book;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAuthorBooks();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-       appBar: new AppBar(
-         elevation:0,
+      appBar: new AppBar(
+        elevation: 0,
         actions: [
           IconButton(
             icon: Icon(
@@ -37,58 +55,26 @@ class _AuthorBookScreenState extends State<AuthorBookScreen> {
         ],
         centerTitle: true,
         title: Text(
-          'Authorname',
+          '${widget.author.firstName} ${widget.author.lastName}',
           style: kTitle,
         ),
-        
         backgroundColor: Colors.white,
       ),
-         body:
-         ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: authorBookList.length,
-        itemBuilder: (context ,index){
-        
+      body: authorBooks.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: authorBooks.length,
+              itemBuilder: (context, index) {
                 //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
-            return    
-            ListScreen( bookname: "${authorBookList[index].name}" , authorname: "${authorBookList[index].picture}", language:"${authorBookList [index].author}", issuedyear:" ${authorBookList[index].year}" ,);
-
-
-                         
-
-                        
-                
-
-                        
-
-                    
-
-                
-        },
-
-        
-                    ),
+                return ListScreen(
+                  bookname: "${authorBooks[index].title}",
+                  authorname: "",
+                  language: "${authorBooks[index].language}",
+                  issuedyear: " ${authorBooks[index].copyrightYear}",
+                );
+              },
+            ),
     );
-
-                  
-              
-    
-      
   }
-}
-
-
-
-
-
-
-class AuthorBookList{
-final String name;
-final String author;
-final String picture;
-final String year;
-
-
-AuthorBookList( {@required this.name , @required this.author,@required  this.picture, @required  this.year });
-
 }

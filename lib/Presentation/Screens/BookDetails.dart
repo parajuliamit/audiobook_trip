@@ -165,7 +165,7 @@ class _BookDetailsState extends State<BookDetails> {
                           padding: EdgeInsets.all(8),
                           margin: EdgeInsets.all(5),
                           child: ListTile(
-                            onTap: () async {
+                            onTap: () {
                               Navigator.push(context,
                                   MaterialPageRoute(builder: (context) {
                                 return AudioPlayer(
