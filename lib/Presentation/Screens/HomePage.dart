@@ -3,6 +3,7 @@ import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/B
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/Genre.dart';
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/PopularBooks.dart';
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/authorlistscreen.dart';
+import 'package:audiobook_trip/Presentation/Screens/SearchScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
@@ -20,14 +21,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-          IconButton(
+        new  IconButton(
             icon: Icon(
               Icons.search,
-              color: Colors.grey,
+               
+              color: Colors.grey, 
             ),
-            onPressed: () {},
-          )
+            onPressed: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new SearchScreen())),),
+           
+          
         ],
+      
         centerTitle: true,
         title: Text(
           'AudioBook',
@@ -53,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    height: 240.0,
+                    height: 190.0,
                     child: PopularBooks(),
                   ),
                   Divider(),
@@ -68,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    height: 240.0,
+                    height: 190.0,
                     child: Genre(),
                   ),
                   Divider(),
@@ -93,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Container(
-                    height: 240.0,
+                    height: 190.0,
                     child: PopularAuthor(),
                   ),
                 ],

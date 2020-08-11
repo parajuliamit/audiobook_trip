@@ -19,7 +19,7 @@ class PopularAuthor extends StatefulWidget {
 }
 
 class _PopularAuthorState extends State<PopularAuthor> {
-  String imageLocation = 'assets/images/download.jpg';
+ // String imageLocation = 'assets/images/download.jpg';
 
   List<Author> popularAuthor = [];
 
@@ -51,10 +51,10 @@ class _PopularAuthorState extends State<PopularAuthor> {
                       ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new AuthorBookScreen())),
 
                   child: BookCard(
-                    imageLocation: "$imageLocation",
-                    title: '',
+                    //imageLocation: "$imageLocation",
+                    title: '${popularAuthor[index].firstName} ${popularAuthor[index].lastName}',
                     name:
-                        '${popularAuthor[index].firstName} ${popularAuthor[index].lastName}',
+                        '',
                   ),
                 ),
               );

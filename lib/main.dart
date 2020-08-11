@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       theme: ThemeData(
         primaryColor: Color(0xFF64B5F6),
+        fontFamily: 'GreatVibes'
       )
     );
   }

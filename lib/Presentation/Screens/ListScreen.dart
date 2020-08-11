@@ -14,12 +14,7 @@ final String issuedyear;
 
 
 ListScreen( {@required this.bookname , @required this.authorname , @required this.language , @required this.issuedyear});
-  
-  
-
-
-
-  
+ 
   @override
   Widget build(BuildContext context) {
     

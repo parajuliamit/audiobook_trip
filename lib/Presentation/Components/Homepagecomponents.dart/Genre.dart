@@ -1,8 +1,9 @@
+import 'package:audiobook_trip/Presentation/Screens/GenreBookScreen.dart';
 import 'package:flutter/material.dart';
 
 import 'bookcard.dart';
 
-String imageLocation = "assets/images/download.jpg";
+//String imageLocation = "assets/images/download.jpg";
 
 List<String> genre = [
   'Poetry',
@@ -48,12 +49,12 @@ class _GenreState extends State<Genre> {
           padding: const EdgeInsets.fromLTRB(12, 14, 16, 12),
           child: InkWell(
             onTap:
-                () {}, //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
+                ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new GenreBookScreen())),
 
             child: BookCard(
-              imageLocation: imageLocation,
-              title: "",
-              name: "${genre[index]}",
+              //imageLocation: imageLocation,
+              title: "${genre[index]}",
+              name: "",
             ),
           ),
         );

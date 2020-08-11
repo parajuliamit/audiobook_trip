@@ -37,7 +37,7 @@ class _AuthorBookScreenState extends State<AuthorBookScreen> {
         ],
         centerTitle: true,
         title: Text(
-          'All Books',
+          'Authorname',
           style: kTitle,
         ),
         

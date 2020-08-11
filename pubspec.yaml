@@ -41,3 +41,14 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+
+  fonts:
+    - family: CartoonBlocks
+      fonts:
+       - asset: assets/fonts/From Cartoon Blocks.ttf
+         weight: 600
+  
+    - family: GreatVibes
+      fonts:
+        - asset: assets/fonts/GreatVibes-Regular.ttf
+          weight: 300  

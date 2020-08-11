@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+
 
 
 class BookCard extends StatelessWidget {
@@ -12,8 +14,8 @@ class BookCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-          height: 240.0,
-          width: 200.0,
+          height: 190.0,
+          width: 190.0,
           decoration: BoxDecoration(
         color: Colors.white,
         boxShadow: [ BoxShadow (
@@ -30,13 +32,40 @@ class BookCard extends StatelessWidget {
             children: <Widget>[
               
               Expanded(
-                                        child: Stack(
+                child: Stack(
                   children: <Widget>[
-                    Image.asset(imageLocation,  height: 240.0, width: 200.0, fit: BoxFit.cover,),
+                   // Image.asset(imageLocation,  height: 240.0, width: 200.0, fit: BoxFit.cover,),
 
-              Container(
-               height: 240.0,
-          width: 200.0,
+              Container( child: 
+   Column(
+       mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+                  Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text("$title", style: TextStyle(color: Colors.white , fontSize: 16.0, fontWeight: FontWeight.bold, fontStyle: FontStyle.normal, ), 
+                            textAlign: TextAlign.center
+                            
+                            ),
+                            
+                          ),
+
+        
+                 Padding(
+                        padding: const EdgeInsets.only(
+                         left: 8.0),
+                        child:Text("$name", style: TextStyle(color: Colors.white , fontSize: 16.0,   ), ),
+                      ),
+                 
+                
+                 
+
+        
+
+                ],
+        )
+          ,
+          height: 190.0,
+          width: 190.0,
         decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -51,33 +80,7 @@ class BookCard extends StatelessWidget {
       ),
               ),
                     
-
-     Positioned(
-    left: 10.0,
-    bottom: 18.0,
-       child: Column(
-         mainAxisAlignment:MainAxisAlignment.spaceBetween,
-      children: <Widget>[
-        Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("$title", style: TextStyle(color: Colors.white , fontSize: 16.0), ),
-                          ),
-
         
-                 Padding(
-                        padding: const EdgeInsets.only(
-                         left: 8.0),
-                        child:Text("$name", style: TextStyle(color: Colors.white , fontSize: 16.0),),
-                      ),
-                 
-                
-                 
-
-        
-
-                ],
-        )
-                     ),
               
       ],
     ),

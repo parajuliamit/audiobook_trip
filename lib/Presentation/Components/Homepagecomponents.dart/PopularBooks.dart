@@ -10,7 +10,7 @@ class PopularBooks extends StatefulWidget {
 }
 
 class _PopularBooksState extends State<PopularBooks> {
-  String imageLocation = 'assets/images/download.jpg';
+  //String imageLocation = 'assets/images/download.jpg';
 
   List<Book> popularBooks = [];
 
@@ -23,8 +23,9 @@ class _PopularBooksState extends State<PopularBooks> {
 
   @override
   void initState() {
+     getBooks();
     super.initState();
-    getBooks();
+   
   }
 
   @override
@@ -44,7 +45,7 @@ class _PopularBooksState extends State<PopularBooks> {
                             bookTitle: popularBooks[index].title,
                           ))),
                   child: BookCard(
-                    imageLocation: "$imageLocation",
+                   // imageLocation: "$imageLocation",
                     title: popularBooks[index].title,
                     name:
                         '${popularBooks[index].author.firstName} ${popularBooks[index].author.lastName}',
