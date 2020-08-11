@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/Screens/HomePage.dart';
 
-
 void main() {
   runApp(MyApp());
 }

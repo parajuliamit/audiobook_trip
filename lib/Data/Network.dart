@@ -12,314 +12,305 @@ class Network {
   static Future<List<Author>> getPopularAuthors() async {
     String url = _baseUrl + 'authors?limit=10' + _format;
     List<Author> popularAuthors = [];
-    try{    
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (int i = 0; i < 10; i++) {
-        var data = rawData['authors'][i];
-        Author author = Author(
-            id: data['id'],
-            firstName: data['first_name'],
-            lastName: data['last_name'],
-            dob: data['dob'],
-            dod: data['dod']);
-        popularAuthors.add(author);
+    try {
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (int i = 0; i < 10; i++) {
+          var data = rawData['authors'][i];
+          Author author = Author(
+              id: data['id'],
+              firstName: data['first_name'],
+              lastName: data['last_name'],
+              dob: data['dob'],
+              dod: data['dod']);
+          popularAuthors.add(author);
+        }
       }
-    }
-    return popularAuthors;
-  }
-
-  catch(e){
+      return popularAuthors;
+    } catch (e) {
       print(e);
-      return popularAuthors ;
-  }
+      return popularAuthors;
+    }
   }
 
   static Future<List<Book>> getPopularBooks() async {
     String url = _baseUrl + 'audiobooks?limit=10' + _format;
     List<Book> popularBooks = [];
-    try{
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (int i = 0; i < 10; i++) {
-        var data = rawData['books'][i];
-        var authorData = data['authors'][0];
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
+    try {
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (int i = 0; i < 10; i++) {
+          var data = rawData['books'][i];
+          var authorData = data['authors'][0];
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
 
-        popularBooks.add(book);
+          popularBooks.add(book);
+        }
       }
-    }
 
-    return popularBooks;
-  }
-   catch(e){
+      return popularBooks;
+    } catch (e) {
       print(e);
       return popularBooks;
-       }
     }
+  }
 
   static Future<List<Book>> getGenreBooks({String genre}) async {
-    try{
-    String url = _baseUrl + 'audiobooks/?genre=$genre' + _format;
-    List<Book> genreBooks = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['books']) {
+    try {
+      String url = _baseUrl + 'audiobooks/?genre=$genre' + _format;
+      List<Book> genreBooks = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['books']) {
 //        var data = rawData['books'][i];
-        var authorData = data['authors'][0];
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
+          var authorData = data['authors'][0];
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
 
-        genreBooks.add(book);
+          genreBooks.add(book);
+        }
       }
-    }
 
-    return genreBooks;
-  }
-   catch(e){
+      return genreBooks;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<List<Book>> getAuthorBooks({Author author}) async {
-    try{
-    String authorLastName = author.lastName;
-    String authorID = author.id;
-    String url = _baseUrl + 'audiobooks/?author=$authorLastName' + _format;
-    List<Book> authorBooks = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['books']) {
-        var authorData = data['authors'][0];
-        if (authorData['id'] != authorID) {
-          continue;
+    try {
+      String authorLastName = author.lastName;
+      String authorID = author.id;
+      String url = _baseUrl + 'audiobooks/?author=$authorLastName' + _format;
+      List<Book> authorBooks = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['books']) {
+          var authorData = data['authors'][0];
+          if (authorData['id'] != authorID) {
+            continue;
+          }
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
+
+          authorBooks.add(book);
         }
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
-
-        authorBooks.add(book);
       }
-    }
 
-    return authorBooks;
-    } catch(e){
+      return authorBooks;
+    } catch (e) {
       print(e);
       return null;
     }
   }
 
   static Future<List<Book>> getAllBooks() async {
-    try{
-    String url = _baseUrl + 'audiobooks/?' + _format;
-    List<Book> allBooks = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['books']) {
-        var authorData = data['authors'][0];
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
+    try {
+      String url = _baseUrl + 'audiobooks/?' + _format;
+      List<Book> allBooks = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['books']) {
+          var authorData = data['authors'][0];
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
 
-        allBooks.add(book);
+          allBooks.add(book);
+        }
       }
-    }
 
-    return allBooks;
-  }
-   catch(e){
+      return allBooks;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<List<Author>> getAllAuthors() async {
-    try{
-    String url = _baseUrl + 'authors?' + _format;
-    List<Author> allAuthors = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['authors']) {
-        Author author = Author(
-            id: data['id'],
-            firstName: data['first_name'],
-            lastName: data['last_name'],
-            dob: data['dob'],
-            dod: data['dod']);
-        allAuthors.add(author);
-        print('Name: ' + author.firstName + author.lastName);
+    try {
+      String url = _baseUrl + 'authors?' + _format;
+      List<Author> allAuthors = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['authors']) {
+          Author author = Author(
+              id: data['id'],
+              firstName: data['first_name'],
+              lastName: data['last_name'],
+              dob: data['dob'],
+              dod: data['dod']);
+          allAuthors.add(author);
+          print('Name: ' + author.firstName + author.lastName);
+        }
       }
-    }
-    return allAuthors;
-  }
-   catch(e){
+      return allAuthors;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<List<Book>> getSearchBooks({String title}) async {
-    try{
-    String url = _baseUrl + 'audiobooks/?title=$title' + _format;
-    List<Book> searchBooks = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['books']) {
-        var authorData = data['authors'][0];
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
+    try {
+      String url = _baseUrl + 'audiobooks/?title=$title' + _format;
+      List<Book> searchBooks = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['books']) {
+          var authorData = data['authors'][0];
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
 
-        searchBooks.add(book);
+          searchBooks.add(book);
+        }
       }
-    }
 
-    return searchBooks;
-  }
-   catch(e){
+      return searchBooks;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<List<Author>> getSearchAuthors({String lastName}) async {
-    try{
-    String url = _baseUrl + 'authors?last_name=$lastName' + _format;
-    List<Author> searchAuthors = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['authors']) {
-        Author author = Author(
-            id: data['id'],
-            firstName: data['first_name'],
-            lastName: data['last_name'],
-            dob: data['dob'],
-            dod: data['dod']);
-        searchAuthors.add(author);
+    try {
+      String url = _baseUrl + 'authors?last_name=$lastName' + _format;
+      List<Author> searchAuthors = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['authors']) {
+          Author author = Author(
+              id: data['id'],
+              firstName: data['first_name'],
+              lastName: data['last_name'],
+              dob: data['dob'],
+              dod: data['dod']);
+          searchAuthors.add(author);
+        }
       }
-    }
-    return searchAuthors;
-  }
-   catch(e){
+      return searchAuthors;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<List<Book>> getBooksLanguage({String language}) async {
-    try{
-    String url = _baseUrl + 'audiobooks/?' + _format;
-    List<Book> languageBooks = [];
-    http.Response response;
-    response = await http.get(url);
-    if (response.statusCode == 200) {
-      dynamic rawData = jsonDecode(response.body);
-      for (var data in rawData['books']) {
-        if (data['language'] != language) {
-          continue;
+    try {
+      String url = _baseUrl + 'audiobooks/?' + _format;
+      List<Book> languageBooks = [];
+      http.Response response;
+      response = await http.get(url);
+      if (response.statusCode == 200) {
+        dynamic rawData = jsonDecode(response.body);
+        for (var data in rawData['books']) {
+          if (data['language'] != language) {
+            continue;
+          }
+          var authorData = data['authors'][0];
+          Author author = Author(
+              id: authorData['id'],
+              firstName: authorData['first_name'],
+              lastName: authorData['last_name'],
+              dob: authorData['dob'],
+              dod: authorData['dod']);
+          Book book = Book(
+              id: data['id'],
+              title: data['title'],
+              description: data['description'],
+              language: data['language'],
+              author: author,
+              sections: data['num_sections'],
+              copyrightYear: data['copyright_year']);
+
+          languageBooks.add(book);
         }
-        var authorData = data['authors'][0];
-        Author author = Author(
-            id: authorData['id'],
-            firstName: authorData['first_name'],
-            lastName: authorData['last_name'],
-            dob: authorData['dob'],
-            dod: authorData['dod']);
-        Book book = Book(
-            id: data['id'],
-            title: data['title'],
-            description: data['description'],
-            language: data['language'],
-            author: author,
-            sections: data['num_sections'],
-            copyrightYear: data['copyright_year']);
-
-        languageBooks.add(book);
       }
-    }
 
-    return languageBooks;
-  }
-   catch(e){
+      return languageBooks;
+    } catch (e) {
       print(e);
       return null;
-       }
     }
+  }
 
   static Future<Book> getBookDetails({String id}) async {
     String url = _baseUrl + 'audiobooks/?id=$id' + _format;
@@ -354,7 +345,7 @@ class Network {
     http.Response response;
     final Xml2Json xml2Json = Xml2Json();
     try {
-     response = await http.get(url);
+      response = await http.get(url);
       xml2Json.parse(response.body);
 
       var jsonParker = xml2Json.toParker();
@@ -368,7 +359,7 @@ class Network {
         Sections section = Sections(
             title: item['title'],
             duration: item['itunes:duration'],
-            link: itemsLink[count]['enclosure']['url']);
+            link: (itemsLink[count]['enclosure']['url']));
         sections.add(section);
         count++;
       }
@@ -379,4 +370,3 @@ class Network {
     }
   }
 }
-

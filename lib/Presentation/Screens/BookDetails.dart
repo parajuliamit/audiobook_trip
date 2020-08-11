@@ -2,11 +2,11 @@ import 'package:audiobook_trip/Data/Network.dart';
 import 'package:audiobook_trip/Domain/Author.dart';
 import 'package:audiobook_trip/Domain/Book.dart';
 import 'package:audiobook_trip/Domain/Sections.dart';
+import 'package:audiobook_trip/Presentation/Screens/AudioPlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
-
 import 'package:flutter_html/flutter_html.dart';
 
 class BookDetails extends StatefulWidget {
@@ -93,42 +93,45 @@ class _BookDetailsState extends State<BookDetails> {
                   height: 10,
                 ),
                 Container(
+                  height: 300,
                   decoration: BoxDecoration(color: Colors.white, boxShadow: [
                     BoxShadow(
                         color: Colors.grey, offset: Offset(1, 2), blurRadius: 2)
                   ]),
                   padding: EdgeInsets.all(10),
                   width: MediaQuery.of(context).size.width,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Language: ${book.language}',
-                        style:
-                            TextStyle(color: Colors.blueAccent, fontSize: 15),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Html(
-                        data: book.description,
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Copyright Year: ${book.copyrightYear}',
-                        style: TextStyle(color: Colors.blueGrey),
-                      ),
-                      Text(
-                        'Total Time: ${book.totalTime}',
-                        style: TextStyle(color: Colors.blueGrey),
-                      ),
-                      Text(
-                        'Sections: ${book.sections}',
-                        style: TextStyle(color: Colors.blueGrey),
-                      ),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          'Language: ${book.language}',
+                          style:
+                              TextStyle(color: Colors.blueAccent, fontSize: 15),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Html(
+                          data: book.description,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          'Copyright Year: ${book.copyrightYear}',
+                          style: TextStyle(color: Colors.blueGrey),
+                        ),
+                        Text(
+                          'Total Time: ${book.totalTime}',
+                          style: TextStyle(color: Colors.blueGrey),
+                        ),
+                        Text(
+                          'Sections: ${book.sections}',
+                          style: TextStyle(color: Colors.blueGrey),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -162,8 +165,17 @@ class _BookDetailsState extends State<BookDetails> {
                           padding: EdgeInsets.all(8),
                           margin: EdgeInsets.all(5),
                           child: ListTile(
-                            onTap: () {
-                              print('Playing ' + sections[index].title);
+                            onTap: () async {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return AudioPlayer(
+                                  link: sections[index]
+                                      .link
+                                      .replaceFirst(RegExp(r'http'), 'https'),
+                                  title: sections[index].title,
+                                );
+                              }));
+//
                             },
                             title: Text(sections[index].title),
                             trailing: Text(sections[index].duration),
