@@ -2,6 +2,7 @@ import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/P
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/Bottommenu.dart';
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/Genre.dart';
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/PopularBooks.dart';
+import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/authorlistscreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
@@ -47,17 +48,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(text: "Popular Books"),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "See All",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w300),
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
+                       
                       ],
                     ),
                   ),
@@ -72,17 +63,7 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(text: "Genre"),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Text(
-                            "See All",
-                            style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w300),
-                            textAlign: TextAlign.right,
-                          ),
-                        ),
+                       
                       ],
                     ),
                   ),
@@ -98,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         CustomText(text: "Authors"),
                         GestureDetector(
-                          onTap: () {},
+                          onTap:  ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new AuthorListScreen( ))),
                           child: Text(
                             "See All",
                             style: TextStyle(

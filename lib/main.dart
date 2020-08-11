@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'AudioBook',
       home: HomePage(),
       theme: ThemeData(
-        primaryColor: Colors.blueAccent,
+        primaryColor: Color(0xFF64B5F6),
       )
     );
   }

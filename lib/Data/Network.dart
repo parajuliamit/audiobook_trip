@@ -8,13 +8,12 @@ class Network {
   static const String _format = "&format=json";
 
   static Future<List<Author>> getPopularAuthors() async {
-    String url = _baseUrl + 'authors?' + _format;
     List<Author> popularAuthors = [];
+    try{
+    String url = _baseUrl + 'authors?' + _format;
+    
     http.Response response;
-    response = await http.get(url).timeout(Duration(seconds: 3), onTimeout: () {
-      print('TimeOut');
-      return http.get(url);
-    });
+    response = await http.get(url);
     if (response.statusCode == 200) {
       dynamic rawData = jsonDecode(response.body);
       for (int i = 0; i < 10; i++) {
@@ -31,9 +30,17 @@ class Network {
     return popularAuthors;
   }
 
+  catch(e){
+      print(e);
+      return popularAuthors ;
+  }
+  }
+
   static Future<List<Book>> getPopularBooks() async {
-    String url = _baseUrl + 'audiobooks?' + _format;
     List<Book> popularBooks = [];
+    try{
+    String url = _baseUrl + 'audiobooks?' + _format;
+    
     http.Response response;
     response = await http.get(url);
     if (response.statusCode == 200) {
@@ -62,8 +69,14 @@ class Network {
 
     return popularBooks;
   }
+   catch(e){
+      print(e);
+      return popularBooks;
+       }
+    }
 
   static Future<List<Book>> getGenreBooks({String genre}) async {
+    try{
     String url = _baseUrl + 'audiobooks/?genre=$genre' + _format;
     List<Book> genreBooks = [];
     http.Response response;
@@ -94,8 +107,14 @@ class Network {
 
     return genreBooks;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 
   static Future<List<Book>> getAuthorBooks({Author author}) async {
+    try{
     String authorLastName = author.lastName;
     String authorID = author.id;
     String url = _baseUrl + 'audiobooks/?author=$authorLastName' + _format;
@@ -129,9 +148,14 @@ class Network {
     }
 
     return authorBooks;
+    } catch(e){
+      print(e);
+      return null;
+    }
   }
 
   static Future<List<Book>> getAllBooks() async {
+    try{
     String url = _baseUrl + 'audiobooks/?' + _format;
     List<Book> allBooks = [];
     http.Response response;
@@ -161,8 +185,14 @@ class Network {
 
     return allBooks;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 
   static Future<List<Author>> getAllAuthors() async {
+    try{
     String url = _baseUrl + 'authors?' + _format;
     List<Author> allAuthors = [];
     http.Response response;
@@ -182,8 +212,14 @@ class Network {
     }
     return allAuthors;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 
   static Future<List<Book>> getSearchBooks({String title}) async {
+    try{
     String url = _baseUrl + 'audiobooks/?title=$title' + _format;
     List<Book> searchBooks = [];
     http.Response response;
@@ -213,8 +249,14 @@ class Network {
 
     return searchBooks;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 
   static Future<List<Author>> getSearchAuthors({String lastName}) async {
+    try{
     String url = _baseUrl + 'authors?last_name=$lastName' + _format;
     List<Author> searchAuthors = [];
     http.Response response;
@@ -233,8 +275,14 @@ class Network {
     }
     return searchAuthors;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 
   static Future<List<Book>> getBooksLanguage({String language}) async {
+    try{
     String url = _baseUrl + 'audiobooks/?' + _format;
     List<Book> languageBooks = [];
     http.Response response;
@@ -267,4 +315,10 @@ class Network {
 
     return languageBooks;
   }
+   catch(e){
+      print(e);
+      return null;
+       }
+    }
 }
+

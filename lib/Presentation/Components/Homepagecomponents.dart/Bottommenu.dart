@@ -1,4 +1,10 @@
+
+import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/languagelistscreen.dart';
+import 'package:audiobook_trip/Presentation/Screens/HomePage.dart';
+
 import 'package:flutter/material.dart';
+
+import 'browsescreen.dart';
 
 class BottomMenu extends StatelessWidget {
   @override
@@ -11,7 +17,7 @@ class BottomMenu extends StatelessWidget {
           Column(
             children: <Widget>[
               InkWell(
-                onTap: (){},
+                onTap:()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new HomePage( ))),
                               child: Icon(
                     Icons.home,
                     color: Color(0xFF404aff),
@@ -38,38 +44,11 @@ class BottomMenu extends StatelessWidget {
               
             ],
           ),
+         
           Column(
             children: <Widget>[
               InkWell(
-                onTap: (){},
-                              child: Icon(
-                  Icons.person_outline,
-                  color: Color(0xFF23c58a),
-                  size: 35,
-                ),
-              ),
-              SizedBox(
-                height: 5,
-                
-              ),
-              Text(
-                "Authors",
-                style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFFa9a9a9),
-                    fontWeight: FontWeight.w300),
-              ),
-              SizedBox(
-                height: 5,
-                
-              ),
-              
-            ],
-          ),
-          Column(
-            children: <Widget>[
-              InkWell(
-                onTap: (){},
+                onTap: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new LanguageListScreen( ))),
                               child: Icon(
                   Icons.language,
                   color: Color(0xFFff0654),
@@ -96,7 +75,7 @@ class BottomMenu extends StatelessWidget {
           Column(
             children: <Widget>[
               InkWell(
-                onTap: (){},
+                onTap: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new BrowseScreen( ))),
                               child: Icon(
                   Icons.collections_bookmark,
                   color: Color(0xFFe95959),

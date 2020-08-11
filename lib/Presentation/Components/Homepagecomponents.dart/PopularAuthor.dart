@@ -1,7 +1,7 @@
 import 'package:audiobook_trip/Data/Network.dart';
 import 'package:audiobook_trip/Domain/Author.dart';
+import 'package:audiobook_trip/Presentation/Screens/AuthorBooksScreen.dart';
 import 'package:flutter/material.dart';
-
 import 'bookcard.dart';
 
 //
@@ -48,7 +48,7 @@ class _PopularAuthorState extends State<PopularAuthor> {
                 padding: const EdgeInsets.fromLTRB(12, 14, 16, 12),
                 child: InkWell(
                   onTap:
-                      () {}, //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
+                      ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new AuthorBookScreen())),
 
                   child: BookCard(
                     imageLocation: "$imageLocation",

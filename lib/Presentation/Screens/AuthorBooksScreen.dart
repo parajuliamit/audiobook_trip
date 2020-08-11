@@ -1,4 +1,3 @@
-
 import 'package:audiobook_trip/Presentation/Screens/ListScreen.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
@@ -7,20 +6,20 @@ import 'package:flutter/material.dart';
 
 
 
-List<LanguageList> languageList =[
-LanguageList(name: "Bookname1", picture: "assets", author: "Authorname1", year: "1999"),
-LanguageList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
-LanguageList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
+List<AuthorBookList> authorBookList =[
+AuthorBookList(name: "Bookname1", picture: "assets", author: "Authorname", year: "1999"),
+AuthorBookList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
+AuthorBookList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
 
 ];
 
 
-class LanguageScreen extends StatefulWidget {
+class AuthorBookScreen extends StatefulWidget {
   @override
-  _LanguageScreenState createState() => _LanguageScreenState();
+  _AuthorBookScreenState createState() => _AuthorBookScreenState();
 }
 
-class _LanguageScreenState extends State<LanguageScreen> {
+class _AuthorBookScreenState extends State<AuthorBookScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +46,12 @@ class _LanguageScreenState extends State<LanguageScreen> {
          body:
          ListView.builder(
         scrollDirection: Axis.vertical,
-        itemCount: languageList.length,
+        itemCount: authorBookList.length,
         itemBuilder: (context ,index){
         
                 //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
             return    
-            ListScreen( bookname: "${languageList[index].name}" , authorname: "${languageList[index].picture}", language:"${languageList [index].author}", issuedyear:" ${languageList[index].year}" ,);
+            ListScreen( bookname: "${authorBookList[index].name}" , authorname: "${authorBookList[index].picture}", language:"${authorBookList [index].author}", issuedyear:" ${authorBookList[index].year}" ,);
 
 
                          
@@ -83,13 +82,13 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
 
 
-class LanguageList{
+class AuthorBookList{
 final String name;
 final String author;
 final String picture;
 final String year;
 
 
-LanguageList( {@required this.name , @required this.author,@required  this.picture, @required  this.year });
+AuthorBookList( {@required this.name , @required this.author,@required  this.picture, @required  this.year });
 
 }
