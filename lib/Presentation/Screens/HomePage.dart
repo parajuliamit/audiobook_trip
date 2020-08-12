@@ -21,17 +21,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         actions: [
-        new  IconButton(
+          new IconButton(
             icon: Icon(
               Icons.search,
-               
-              color: Colors.grey, 
+              color: Colors.grey,
             ),
-            onPressed: ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new SearchScreen())),),
-           
-          
+            onPressed: () => Navigator.of(context).push(new MaterialPageRoute(
+                builder: (context) => new SearchScreen())),
+          ),
         ],
-      
         centerTitle: true,
         title: Text(
           'AudioBook',
@@ -52,7 +50,6 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(text: "Popular Books"),
-                       
                       ],
                     ),
                   ),
@@ -67,7 +64,6 @@ class _HomePageState extends State<HomePage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(text: "Genre"),
-                       
                       ],
                     ),
                   ),
@@ -83,7 +79,9 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         CustomText(text: "Authors"),
                         GestureDetector(
-                          onTap:  ()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new AuthorListScreen( ))),
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => AuthorListScreen())),
                           child: Text(
                             "See All",
                             style: TextStyle(

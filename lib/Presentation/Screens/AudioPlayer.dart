@@ -63,9 +63,6 @@ class _AudioPlayerState extends State<AudioPlayer> {
               onPressed: () async {
                 if (isFirst) {
                   try {
-                    setState(() {
-                      isPlaying = true;
-                    });
                     await assetsAudioPlayer.open(Audio.network(widget.link),
                         showNotification: true, autoStart: true);
                     isFirst = false;

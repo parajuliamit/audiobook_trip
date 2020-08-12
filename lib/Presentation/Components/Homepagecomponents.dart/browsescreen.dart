@@ -66,6 +66,7 @@ class _BrowseScreenState extends State<BrowseScreen> {
                     itemBuilder: (context, index) {
                       //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
                       return ListScreen(
+                        bookID: "${allBooks[index].id}",
                         bookname: "${allBooks[index].title}",
                         authorname:
                             "${allBooks[index].author.firstName} ${allBooks[index].author.lastName}",

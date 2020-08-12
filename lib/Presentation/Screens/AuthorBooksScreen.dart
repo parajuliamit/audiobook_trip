@@ -5,15 +5,6 @@ import 'package:audiobook_trip/Presentation/Screens/ListScreen.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-//
-//List<AuthorBookList> authorBookList =[
-//AuthorBookList(name: "Bookname1", picture: "assets", author: "Authorname", year: "1999"),
-//AuthorBookList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
-//AuthorBookList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
-//
-//];
-//
-
 class AuthorBookScreen extends StatefulWidget {
   final Author author;
 
@@ -66,8 +57,8 @@ class _AuthorBookScreenState extends State<AuthorBookScreen> {
               scrollDirection: Axis.vertical,
               itemCount: authorBooks.length,
               itemBuilder: (context, index) {
-                //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
                 return ListScreen(
+                  bookID: '${authorBooks[index].id}',
                   bookname: "${authorBooks[index].title}",
                   authorname: "",
                   language: "${authorBooks[index].language}",

@@ -72,6 +72,7 @@ class _GenreBookScreenState extends State<GenreBookScreen> {
               itemBuilder: (context, index) {
                 //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
                 return ListScreen(
+                  bookID: '${genreBooks[index].id}',
                   bookname: "${genreBooks[index].title}",
                   authorname:
                       "${genreBooks[index].author.firstName} ${genreBooks[index].author.lastName}",

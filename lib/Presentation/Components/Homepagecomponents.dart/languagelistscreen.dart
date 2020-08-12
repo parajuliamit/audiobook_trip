@@ -1,22 +1,21 @@
-
 import 'package:audiobook_trip/Presentation/Components/Homepagecomponents.dart/Bottommenu.dart';
 import 'package:audiobook_trip/Presentation/Screens/languagelist.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-
-
-
-
-List<LanguageList> languageList =[
-LanguageList(name: "Language1", ),
-LanguageList(name: "Language1", ),
-LanguageList(name: "Language1", ),
-LanguageList(name: "Laanguage1", ),
-
-
+List<String> languages = [
+  'English',
+  'French',
+  'Spanish',
+  'German',
+  'Italian',
+  'Arabic',
+  'Chinese',
+  'Dutch',
+  'Latin',
+  'Multilingual',
+  'Russian'
 ];
-
 
 class LanguageListScreen extends StatefulWidget {
   @override
@@ -27,61 +26,31 @@ class _LanguageListScreenState extends State<LanguageListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-       appBar: new AppBar(
-         elevation:0,
-
+      appBar: new AppBar(
+        elevation: 0,
         centerTitle: true,
         title: Text(
           'Languages',
           style: kTitle,
         ),
-        
         backgroundColor: Colors.white,
       ),
-         body:
-         Column(
-           children: <Widget>[
-             Expanded(
-                            child: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: languageList.length,
-        itemBuilder: (context ,index){
-        
-                      //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
-                  return 
-                   
-                  Language( language: "${languageList[index].name}"  ,)
-                  ;
-
-                      
-        },
-                          ),
-             ),
-
-             BottomMenu()
-           ],
-         ),
+      body: Column(
+        children: <Widget>[
+          Expanded(
+            child: ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: languages.length,
+              itemBuilder: (context, index) {
+                return Language(
+                  language: "${languages[index]}",
+                );
+              },
+            ),
+          ),
+          BottomMenu()
+        ],
+      ),
     );
-
-                  
-              
-    
-      
   }
-}
-
-
-
-
-
-
-class LanguageList{
-
-final String name;
-
-
-
-LanguageList( {@required  this.name  });
-
 }

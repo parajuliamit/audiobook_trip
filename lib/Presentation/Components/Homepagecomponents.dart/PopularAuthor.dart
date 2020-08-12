@@ -47,8 +47,8 @@ class _PopularAuthorState extends State<PopularAuthor> {
               return Padding(
                 padding: const EdgeInsets.fromLTRB(12, 14, 16, 12),
                 child: InkWell(
-                  onTap: () => Navigator.of(context).push(new MaterialPageRoute(
-                      builder: (context) => new AuthorBookScreen(
+                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => AuthorBookScreen(
                             author: popularAuthor[index],
                           ))),
                   child: BookCard(
