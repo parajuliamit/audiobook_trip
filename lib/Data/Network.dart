@@ -274,9 +274,9 @@ class Network {
   }
 
   static Future<List<Book>> getBooksLanguage({String language}) async {
+    String url = _baseUrl + 'audiobooks/?' + _format;
+    List<Book> languageBooks = [];
     try {
-      String url = _baseUrl + 'audiobooks/?' + _format;
-      List<Book> languageBooks = [];
       http.Response response;
       response = await http.get(url);
       if (response.statusCode == 200) {
@@ -303,12 +303,14 @@ class Network {
 
           languageBooks.add(book);
         }
+      } else {
+        print('Server Error');
       }
 
       return languageBooks;
     } catch (e) {
       print(e);
-      return null;
+      return languageBooks;
     }
   }
 

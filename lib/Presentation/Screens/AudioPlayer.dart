@@ -63,6 +63,9 @@ class _AudioPlayerState extends State<AudioPlayer> {
               onPressed: () async {
                 if (isFirst) {
                   try {
+                    setState(() {
+                      isPlaying = true;
+                    });
                     await assetsAudioPlayer.open(Audio.network(widget.link),
                         showNotification: true, autoStart: true);
                     isFirst = false;
@@ -70,11 +73,12 @@ class _AudioPlayerState extends State<AudioPlayer> {
                     print(t);
                     print('Exception Occurred');
                   }
+                } else {
+                  assetsAudioPlayer.playOrPause();
                 }
                 setState(() {
                   isPlaying = !assetsAudioPlayer.isPlaying.value;
                 });
-                assetsAudioPlayer.playOrPause();
               },
               elevation: 2.0,
               fillColor: Colors.white,

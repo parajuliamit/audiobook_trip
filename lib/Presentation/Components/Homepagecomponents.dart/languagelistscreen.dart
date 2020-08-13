@@ -5,16 +5,16 @@ import 'package:flutter/material.dart';
 
 List<String> languages = [
   'English',
-  'French',
-  'Spanish',
-  'German',
-  'Italian',
-  'Arabic',
-  'Chinese',
-  'Dutch',
-  'Latin',
-  'Multilingual',
-  'Russian'
+//  'French',
+//  'Spanish',
+//  'German',
+//  'Italian',
+//  'Arabic',
+//  'Chinese',
+//  'Dutch',
+//  'Latin',
+//  'Multilingual',
+//  'Russian'
 ];
 
 class LanguageListScreen extends StatefulWidget {

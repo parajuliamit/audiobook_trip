@@ -48,21 +48,23 @@ class _LanguageScreenState extends State<LanguageScreen> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: ListView.builder(
-        scrollDirection: Axis.vertical,
-        itemCount: languageBooks.length,
-        itemBuilder: (context, index) {
-          //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
-          return ListScreen(
-            bookID: '${languageBooks[index].id}',
-            bookname: "${languageBooks[index].title}",
-            authorname:
-                "${languageBooks[index].author.firstName} ${languageBooks[index].author.lastName}",
-            language: "${languageBooks[index].language}",
-            issuedyear: " ${languageBooks[index].copyrightYear}",
-          );
-        },
-      ),
+      body: languageBooks.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: languageBooks.length,
+              itemBuilder: (context, index) {
+                //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
+                return ListScreen(
+                  bookID: '${languageBooks[index].id}',
+                  bookname: "${languageBooks[index].title}",
+                  authorname:
+                      "${languageBooks[index].author.firstName} ${languageBooks[index].author.lastName}",
+                  language: "${languageBooks[index].language}",
+                  issuedyear: " ${languageBooks[index].copyrightYear}",
+                );
+              },
+            ),
     );
   }
 }

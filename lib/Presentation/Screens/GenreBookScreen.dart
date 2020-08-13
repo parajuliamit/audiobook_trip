@@ -4,21 +4,6 @@ import 'package:audiobook_trip/Presentation/Screens/ListScreen.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-//List<GenreBookList> genreBookList = [
-//  GenreBookList(
-//      name: "Bookname1", picture: "assets", author: "Authorname", year: "1999"),
-//  GenreBookList(
-//      name: "Bookname2",
-//      picture: "jhjhgkbk",
-//      author: "Authorname2",
-//      year: "1996"),
-//  GenreBookList(
-//      name: "Bookname3",
-//      picture: "assets",
-//      author: "Authorname3",
-//      year: "1998"),
-//];
-
 class GenreBookScreen extends StatefulWidget {
   final String genre;
   GenreBookScreen({this.genre});
@@ -48,15 +33,6 @@ class _GenreBookScreenState extends State<GenreBookScreen> {
     return Scaffold(
       appBar: new AppBar(
         elevation: 0,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              color: Colors.grey,
-            ),
-            onPressed: () {},
-          )
-        ],
         centerTitle: true,
         title: Text(
           widget.genre,

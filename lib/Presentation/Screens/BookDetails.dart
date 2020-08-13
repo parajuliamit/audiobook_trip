@@ -6,7 +6,6 @@ import 'package:audiobook_trip/Presentation/Screens/AudioPlayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
-import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:flutter_html/flutter_html.dart';
 
 class BookDetails extends StatefulWidget {

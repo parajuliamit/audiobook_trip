@@ -5,13 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:audiobook_trip/Data/Network.dart';
 import 'Bottommenu.dart';
 
-//List<BrowseList> browseList =[
-//BrowseList(name: "Bookname1", picture: "assets", author: "Authorname1", year:"1999" ),
-//BrowseList(name: "Bookname2", picture: "jhjhgkbk", author: "Authorname2", year:"1996"),
-//BrowseList(name: "Bookname3", picture: "assets", author: "Authorname3", year:"1998"),
-//
-//];
-//
+List<Book> allBooks = [];
 
 class BrowseScreen extends StatefulWidget {
   @override
@@ -19,8 +13,6 @@ class BrowseScreen extends StatefulWidget {
 }
 
 class _BrowseScreenState extends State<BrowseScreen> {
-  List<Book> allBooks = [];
-
   void getBooks() async {
     List<Book> book = await Network.getAllBooks();
     setState(() {
@@ -64,7 +56,6 @@ class _BrowseScreenState extends State<BrowseScreen> {
                     scrollDirection: Axis.vertical,
                     itemCount: allBooks.length,
                     itemBuilder: (context, index) {
-                      //()=> Navigator.of(context).push(new MaterialPageRoute(builder: (context) => new ProductDetail())),
                       return ListScreen(
                         bookID: "${allBooks[index].id}",
                         bookname: "${allBooks[index].title}",

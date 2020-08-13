@@ -4,16 +4,7 @@ import 'package:audiobook_trip/Presentation/Screens/AuthorList.dart';
 import 'package:audiobook_trip/Presentation/constants.dart';
 import 'package:flutter/material.dart';
 
-//
-//
-//List<AuthorList> authorList =[
-//AuthorList(name: "Author1", ),
-//AuthorList(name: "Author1", ),
-//AuthorList(name: "Author1", ),
-//AuthorList(name: "Author1", ),
-//
-//
-//];
+List<Author> allAuthors = [];
 
 class AuthorListScreen extends StatefulWidget {
   @override
@@ -21,8 +12,6 @@ class AuthorListScreen extends StatefulWidget {
 }
 
 class _AuthorListScreenState extends State<AuthorListScreen> {
-  List<Author> allAuthors = [];
-
   void getAuthors() async {
     List<Author> author = await Network.getAllAuthors();
     setState(() {
